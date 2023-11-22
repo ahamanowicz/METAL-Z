@@ -17,4 +17,4 @@ Many functions used in the notebooks come either from Julia’s repository spect
 2.	Continuum subtraction and creation of spectral snippets. For continuum correction to run, you need continuum-fit windows files, named sightline_line_lineNO_cont_win.txt. These files can be found in CONT-FIT folder. Ready Spectral Snippets are in DATA (*_cont.dat files). Fe II lines 1142, 1143, and 1144 are in the same file (called Fe_1142) because they are close together and have one continuum correction.
 Lines are numbered as in the line_list.txt: Fe II: 0 (1142),1 (1143), 2 (1144) ,20 (1608) S II: 9 (1250), 10 (1253), 11 (1259).
 
-
+Ret of the notebook is the exploration of the EW measurements and different issues we came across with the lines (LSF correction, blends etc). This analysis is not included in the paper.
