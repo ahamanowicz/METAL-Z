@@ -14,4 +14,6 @@ Many functions used in the notebooks come either from Julia’s repository spect
 **METAL-Z-line-measurements.ipynb**
 1.	HI fitting for all sightlines; requires: SII continuum windows to measure velocity components ( <sightline>_sii_windows.dat, in km/s, centered on MW), continuum fit windows file (<sightline>_lyman_alpha_windows.dat, in km/s  centered on MW), and windows for Ly-alpha winds fitting (<sightline>_lyman_alpha_fit_windows.dat, in restframe A (Angstorm)). Additional codes to help visualize and choose the windows: plot_line_vel.py, plot_line_vel_HI.py. Continuum widow files can be found in the HI-FIT folder
 
-2.	Continuum subtraction and creation of spectral snippets. For continuum correction to run, you need continuum fit windows files, named <sightline>_line_<line-no>_con_win.txt. These files can be found in CONT-FIT folder.
+2.	Continuum subtraction and creation of spectral snippets. For continuum correction to run, you need continuum fit windows files, named <sightline>_line_<line-no>_con_win.txt. These files can be found in CONT-FIT folder. Ready Spectral Snippets are in DATA
+
+3.	
