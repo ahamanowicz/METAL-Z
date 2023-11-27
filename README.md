@@ -4,6 +4,7 @@ METAL-Z paper I code and important files. Includes everything needed to reproduc
 **DATA**
 
 Coadded spectra can be found in the Box-Folder: /METALZ/COADDS/
+Spectral snippets are available in Box-Folder: /METALZ/METAL_Z_voigt 
 Kirill used different coadd methods for his profile fitting routine.
 All files in this repo use "old" sightlines names, contrary to Lorenzo+2022 catalog names used in the paper (affects only Sextans-A). A list of the  "old" names and their Lorenzo equivalents can be found in METAL-Z_Lorenzo+2022.txt
 
