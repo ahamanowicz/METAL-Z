@@ -8,28 +8,42 @@ from scipy.integrate import quad
 from astropy.io import fits
 
 def func(x, beta):
-    f=1-np.exp(-beta*np.exp(-x**2))
+    f = 1 - np.exp(-beta*np.exp(-x**2))
     return f
 
 #return Wl/l
 def CoG_full(N,b,lf):
+    """
+    Curvey of Growth analytical function for given column density, b parameter over a range of LF (wavelength * f-parameter).
+    Retunrs and array.
+    """
+    
     X = np.linspace(0.,1.e3, 1000000)
     alpha = 1.497e-2 #cm2/s
-    N = 10**N
-    b*=1e5
+    N = 10 ** N
+    b *= 1e5
     lf = 10**lf
     tau = alpha * lf * N/b
     c=3.e10
     W_arr = []
+    
     for l in lf:
         tau = alpha * l * N/b
         Y = quad(func,0,1e3, args=(tau))[0]
         W  = 2 * b /c *Y
         W_arr= np.append(W_arr, W)
+    
     #print(Y,W)
-    return W_arr#returns an array
-
+    
+    return W_arr  
+    
 def CoG_single(N,b,lf):
+    
+    """
+    Curvey of Growth analytical function for given column density, b parameter at a single wavelength.
+    Returns single value
+    """
+    
     X = np.linspace(0.,1.e3, 1000000)
     alpha = 1.497e-2 #cm2/s
     N = 10**N
@@ -41,7 +55,8 @@ def CoG_single(N,b,lf):
     Y = quad(func,0,1e3, args=(tau))[0]
     W  = 2 * b /c *Y
     #print(Y,W)
-    return W#returns single value
+    
+    return W  
 
 def banana_plot(Chi_r, name='', line='', n_voigt=0, contours=[0.99, 0.98,0.95,0.90, 0.7, 0.5, 0.2], xlim = [14,17], ylim=[5,25], save=True):
 
@@ -93,7 +108,9 @@ def banana_plot(Chi_r, name='', line='', n_voigt=0, contours=[0.99, 0.98,0.95,0.
     fig.savefig(name+"_"+line+"_cog.png")
         
 def cog_model(Narray=np.arange(10,20,0.1), barray=np.arange(5,100,.5) , LFarray=np.linspace(-8,-4,100)):
-    # ##generate the model array
+    """
+    Generate the model array
+    """
     Model_array=np.zeros((np.size(N),np.size(b), np.size(LF_m)))
     for i in range(np.size(N)):
         for j in range(np.size(b)):
