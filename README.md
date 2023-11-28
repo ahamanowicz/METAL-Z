@@ -40,5 +40,13 @@ The CoG process requires a model ( a grid of parameters), which can be generated
 The notebook uses the custom repository CogFunctions (in REPOS/).
 
 **COG measurements METAL-Z.ipynb**
+
 Similar to the example, but CoG calculations for METAL-Z measurements. Requires lines_list.txt, model.fits, table of equivalent width measurements. Provides banana plot (contours), 2D probability map, and final N and b values with errors. The last cell in the notebook is a quick loop over all sightlines.
 Details about the design of Durve of Growth calculations are described in the Appendix to the METAL-Z paper.
+
+**Bayesian errors of the log(NH)-d(X)**
+
+Bayesian linear regression of the log(NH) - d (X) relation, with errors. Requires input file with depletion measurements. 
+Uses a and b parameter grid to find the most probable function parameters. All necessary functions are included in the notebook.
+There are two versions of prior and posterior functions - the original ones are locked at the LMC value. New ones (called 'free') let both parameters be fitted. Funciton calc_zh calculates the z parameter (see RD+2021,2022a for details of the function). 
+Calculate the best-fitting parameters for each galaxy and each element. The result is a plot of probabilities in the phase space of a (slope) and b (intercept). Code provides the best value of a and b parameters together with errors. For METAL-Z, we have fitting only for Fe as the majority of S depletions were positive. Most up to date solutions are in the top of the notebook, later are included different variations (with CoG measurements, with fixed b etc).
