@@ -1,7 +1,12 @@
 # METAL-Z
 METAL-Z paper I code and essential files. Includes everything needed to reproduce the work in the paper (except for running the profile fits by Kirill)
 
+**Requirements:** numpy, matplotlib, astropy, scipy, math, uncertanities (any version of numpy should work)
+
 **DATA**
+
+METAL-Z results file (all results used in the paper) are in Box: /METALZ/DATA/METALZ-res_PF.fits. The curve of growth measurements, also in the Box, are in METALZ-results.fits
+In the same folder are D/G measurements for DLAs, which are used for the D/G-metallicity plot.
 
 Coadded spectra can be found in the Box-Folder: /METALZ/COADDS/
 Spectral snippets are available in Box-Folder: /METALZ/METAL_Z_voigt 
@@ -11,6 +16,24 @@ All files in this repo use "old" sightlines names, contrary to Lorenzo+2022 cata
 **NOTEBOOKS**
 
 Many functions used in the notebooks come from Julia's repository spectro (which I have downloaded and might not have the newest version – check compatibility) or my repo spec_utils_alex, both included here. Notebooks can be found in the NOTEBOOKS directory.
+
+
+**METAL-Z full analysis for the paper-profile fit.ipynb**
+
+Main notebook containing analysis of the results of METAL-Z measurements. Depletion measurements in this notebook are based on the profile fitting, exactly as in the paper.
+To run, this notebook requires custom repositories (all included in /REPOS/): depletion_utils_alex, CogFunctions, spectro, spec_utils_alex, 
+and data tables: line_list, METAL-Z_res_PF, reference_abundances, metal-fe-s, dep_MW, dep-nh-MW and depletions results from METAL for LMC, SMC and MW. 
+
+1. Contains all information about galaxies (velocities, redshifts) and lines used in the project.
+2. Scales the abundances of alpha and Fe peak elements from known stellar abundances in IC 1613 and Sextans A
+3. Calculates depletions from provided column densities
+4. Create all plots and tables (in Latex form) for the paper
+
+Create figures for the paper (all in Box folder METALZ/FIGURES)
+a) Relation between d(Fe) and d(S): provides the plot (plot METAL relations for comparison,  requires metal-fe-s.txt)
+b) N(SII) - N(H)  
+c) Fe and S depletions relation with N(H). Requires fit coefficients calculated in Bayesian errors of the log(NH)-d(X).ipynb (here hardcoded). Plots METAL data points (requires metal measurements files). No fit for depletions of S.
+d)
 
 **METAL-Z-line-measurements.ipynb**
 1.	**HI fitting for all sightlines** requires: SII continuum windows to measure velocity components ( sightline_sii_windows.dat, in km/s, centered on MW), continuum fit windows file (sightline_lyman_alpha_windows.dat, in km/s  centered on MW), and windows for Ly-alpha winds fitting (sightline_lyman_alpha_fit_windows.dat, in restframe A (Angstorm)). Additional codes to help visualize and choose the windows: plot_line_vel.py, plot_line_vel_HI.py. Continuum widow files can be found in the HI-FIT folder
@@ -42,11 +65,11 @@ The notebook uses the custom repository CogFunctions (in REPOS/).
 **COG measurements METAL-Z.ipynb**
 
 Similar to the example, but CoG calculations for METAL-Z measurements. Requires lines_list.txt, model.fits, table of equivalent width measurements. Provides banana plot (contours), 2D probability map, and final N and b values with errors. The last cell in the notebook is a quick loop over all sightlines.
-Details about the design of Durve of Growth calculations are described in the Appendix to the METAL-Z paper.
+Details about the design of the Durve of Growth calculations are described in the METAL-Z paper Appendix.
 
-**Bayesian errors of the log(NH)-d(X)**
+**Bayesian errors of the log(NH)-d(X).ipynb**
 
 Bayesian linear regression of the log(NH) - d (X) relation, with errors. Requires input file with depletion measurements. 
 Uses a and b parameter grid to find the most probable function parameters. All necessary functions are included in the notebook.
-There are two versions of prior and posterior functions - the original ones are locked at the LMC value. New ones (called 'free') let both parameters be fitted. Funciton calc_zh calculates the z parameter (see RD+2021,2022a for details of the function). 
-Calculate the best-fitting parameters for each galaxy and each element. The result is a plot of probabilities in the phase space of a (slope) and b (intercept). Code provides the best value of a and b parameters together with errors. For METAL-Z, we have fitting only for Fe as the majority of S depletions were positive. Most up to date solutions are in the top of the notebook, later are included different variations (with CoG measurements, with fixed b etc).
+There are two versions of prior and posterior functions - the original ones are locked at the LMC value. New ones (called 'free') let both parameters be fitted. Funciton calc_zh calculates the z parameter (see RD+2021,2022a for function details). 
+Calculate the best-fitting parameters for each galaxy and each element. The result is a plot of probabilities in the phase space of a (slope) and b (intercept). Code provides the best value of a and b parameters together with errors. We have fitting only for METAL-Z for Fe as most S depletions were positive. Most up-to-date solutions are at the top of the notebook, and later, different variations are included (with CoG measurements, with fixed b, etc.).
