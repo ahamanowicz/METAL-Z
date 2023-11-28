@@ -33,3 +33,8 @@ b) **Special cases**
 
 c) **Comparison with Ed's measurements**: Last bit ofg the notebook shows a comparison between results from my measurements with those done by Ed Jenkins.
 
+**COG-example.ipnyb**
+
+Shows how the Curve of Growth code works on the example from Prochaska et al. 2006.
+CoG process requires a model ( a grid of 
+
