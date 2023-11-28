@@ -20,20 +20,34 @@ Many functions used in the notebooks come from Julia's repository spectro (which
 
 **METAL-Z full analysis for the paper-profile fit.ipynb**
 
-Main notebook containing analysis of the results of METAL-Z measurements. Depletion measurements in this notebook are based on the profile fitting, exactly as in the paper.
-To run, this notebook requires custom repositories (all included in /REPOS/): depletion_utils_alex, CogFunctions, spectro, spec_utils_alex, 
-and data tables: line_list, METAL-Z_res_PF, reference_abundances, metal-fe-s, dep_MW, dep-nh-MW and depletions results from METAL for LMC, SMC and MW. 
+Main notebook containing analysis of the results of METAL-Z measurements. Depletion measurements in this notebook are based on the profile fitting,  as in the paper.
+To run, this notebook requires custom repositories (all included in /REPOS/): depletion_utils_alex, CogFuncątions, spectro, spec_utils_alex, 
+and data tables: line_list, METAL-Z_res_PF, reference_abundances, metal-fe-s, dep_MW, dep-nh-MW, and depletions results from METAL for LMC, SMC, and MW. 
 
 1. Contains all information about galaxies (velocities, redshifts) and lines used in the project.
 2. Scales the abundances of alpha and Fe peak elements from known stellar abundances in IC 1613 and Sextans A
 3. Calculates depletions from provided column densities
 4. Create all plots and tables (in Latex form) for the paper
 
-Create figures for the paper (all in Box folder METALZ/FIGURES)
+Create figures for the paper (all in Box folder METALZ/FIGURES):
+
 a) Relation between d(Fe) and d(S): provides the plot (plot METAL relations for comparison,  requires metal-fe-s.txt)
+
 b) N(SII) - N(H)  
-c) Fe and S depletions relation with N(H). Requires fit coefficients calculated in Bayesian errors of the log(NH)-d(X).ipynb (here hardcoded). Plots METAL data points (requires metal measurements files). No fit for depletions of S.
-d)
+
+c) Fe and S depletions relation with N(H). Requires fit coefficients calculated in Bayesian errors of the log(NH)-d(X).ipynb (here hardcoded). Plots METAL data points (requires metal measurement files). No fit for depletions of S.
+
+d) As explained in the notebook and paper, to get D/G, we need to make assumptions about the behavior of depletions of other elements. We assume that the depletion relations between elements found in MW also apply to METAL-Z galaxies. 
+Implementation: scale depletions of Fe to other elements using MW relations between d(fe) and d(X) (translate through F*), reproduce the relation with gas density for all elements, sum contribution of different elements to calculate D/G relation with gas density, find D/G at specific column densities. It also provides a plot with derived relations between depletion and column density for Si and Mg in IC 1613 and Sextans A.
+Requires coefficients for relations between Fe and other elements in MW (dep_MW.txt)
+
+e) D/G - metallicity plot, or Feldman plot, requires literature datasets (included in here, plot adapted from Julia): D/G from METAL (metal-dg.txt), DLAs (decia2016_table6.dat) together with scaling (LMC_fit_DG_NH.dat), FIR (remy-ruyer2014_dust_gas_masses.dat, dustpedia_combined_sample.csv). (DLAs might also require *.fits data from deCia and Quiret, which are included in the Box) 
+
+f) D/G but only for Fe - without assumptions of other elements.
+
+g) Other tables and plots used in the paper or Appendix
+
+h) Alternative versions of plots for the HST proposal
 
 **METAL-Z-line-measurements.ipynb**
 1.	**HI fitting for all sightlines** requires: SII continuum windows to measure velocity components ( sightline_sii_windows.dat, in km/s, centered on MW), continuum fit windows file (sightline_lyman_alpha_windows.dat, in km/s  centered on MW), and windows for Ly-alpha winds fitting (sightline_lyman_alpha_fit_windows.dat, in restframe A (Angstorm)). Additional codes to help visualize and choose the windows: plot_line_vel.py, plot_line_vel_HI.py. Continuum widow files can be found in the HI-FIT folder
