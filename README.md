@@ -31,10 +31,11 @@ b) **Special cases**
   - **Stack plot** This notebook includes a version of a stack plot, showing all measured lines centered at the systemic velocity, with equivalent width measurements in the integration range marked.
   - **Fe blending in IC 1613**: Due to the velocity differences, in IC 1613 Fe 1143 blended with 1142 form the Milky Way. The process of "deblending" is described in the Appendix of the paper. We measured 1134 and 1144 from MW, and used Curve of Growth to estimate 1142 equivalent width. then we subtracted 1142 from IC 1613 1143, getting a deblended value of equivalent width. 
 
-c) **Comparison with Ed's measurements**: Last bit ofg the notebook shows a comparison between results from my measurements with those done by Ed Jenkins.
+c) **Comparison with Ed's measurements**: Last bit of the notebook shows a comparison between results from my measurements with those done by Ed Jenkins.
 
 **COG-example.ipnyb**
 
-Shows how the Curve of Growth code works on the example from Prochaska et al. 2006.
-CoG process requires a model ( a grid of 
+Shows how the Curve of Growth code works in the example from Prochaska et al. 2006.
+CoG process requires a model ( a grid of parameters), which can be generated using cog_model.py (in CODES/). In the notebook, you have to create a grid corresponding to that model. To make CoG calculations you need equivalent width with errors, line wavelengths, and f-values. The notebook creates a 'banana plot' and 2D probability maps for log(N) and b. 
+Notebook uses custom repository CogFunctions (in REPOS/).
 
